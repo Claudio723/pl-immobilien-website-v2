@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Home, MapPin, KeyRound, CheckCircle } from 'lucide-react';
+import { ArrowRight, MapPin, Home, Mountain, Sun, Phone, Search, ShieldCheck } from 'lucide-react';
 
 export default function Hero() {
   const scrollToKontakt = () => {
@@ -11,112 +11,229 @@ export default function Hero() {
     }
   };
 
+  const scrollToLeistungen = () => {
+    const element = document.getElementById('leistungen');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const stats = [
+    { label: 'Schweiz', sub: 'Lokaler Markt' },
+    { label: 'Toskana', sub: 'Italien' },
+    { label: 'Tessin', sub: 'Südliche Schweiz' },
+    { label: 'Persönlich', sub: 'Vor Ort in Dietikon' },
+  ];
+
   return (
-    <section className="min-h-[100dvh] flex items-center pt-32 md:pt-36 relative overflow-hidden bg-gradient-to-br from-warm-bg via-white to-warm-bg">
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-12 items-center relative z-10">
+    <section className="min-h-[100dvh] flex flex-col justify-center pt-28 md:pt-32 pb-16 relative overflow-hidden bg-gradient-to-br from-warm-bg via-white to-warm-bg">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-40">
+        <div className="absolute top-1/4 -left-20 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px]" />
+        <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10 flex-grow">
         {/* Left Content */}
-        <div className="md:col-span-7 space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-            <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-            Immobilienberatung in der Schweiz, Toskana & Tessin
-          </div>
+        <div className="space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium"
+          >
+            <MapPin className="w-4 h-4" />
+            PL IMMOBILIEN • Binzstrasse 3, Dietikon
+          </motion.div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-[80px] leading-[1.05] tracking-tighter font-semibold text-balance">
-            Immobilien<br />
-            <span className="text-primary">mit Leidenschaft</span><br />
-            und Massgeschneidertheit.
-          </h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tighter font-semibold text-balance"
+          >
+            Immobilien mit{' '}
+            <span className="text-primary">Leidenschaft</span> und{' '}
+            <span className="text-accent">Regionalität</span>.
+          </motion.h1>
 
-          <p className="max-w-[540px] text-xl text-text-muted leading-relaxed">
-            PL IMMOBILIEN begleitet Sie beim Kauf, Verkauf und der Bewirtschaftung Ihrer Immobilien –
-            persönlich, erfahren und mit einem Rund-um-Sorgen-Paket.
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-[540px] text-xl text-text-muted leading-relaxed"
+          >
+            Kauf, Verkauf, Bewirtschaftung und Verwaltung – für die Schweiz, die Toskana und das Tessin.
+            Mit persönlicher Beratung, die Sie weiterbringt.
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+          {/* Mini search / CTA bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="glass rounded-3xl p-2 flex flex-col sm:flex-row gap-2 max-w-xl shadow-xl"
+          >
+            <div className="flex items-center gap-3 px-4 py-3 flex-grow bg-white rounded-2xl border border-primary/10">
+              <Search className="w-5 h-5 text-text-muted" />
+              <span className="text-text-muted">In welcher Region suchen Sie?</span>
+            </div>
             <motion.button
               onClick={scrollToKontakt}
-              className="cta-button group flex items-center justify-center gap-3 bg-primary hover:bg-primary/95 text-white px-6 py-3 rounded-2xl text-base font-semibold shadow-lg shadow-primary/30 transition-all active:scale-[0.985]"
-              whileHover={{ scale: 1.015 }}
+              className="cta-button px-6 py-3 bg-primary hover:bg-primary/95 text-white font-semibold rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.985] whitespace-nowrap"
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.985 }}
             >
-              Beratung anfragen
-              <ArrowRight className="group-hover:translate-x-1 transition" />
+              Beratung anfragen <ArrowRight className="w-4 h-4" />
             </motion.button>
+          </motion.div>
 
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-4"
+          >
+            <a
+              href="tel:+41433225230"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl border border-primary/20 hover:bg-white text-base font-medium transition-all"
+            >
+              <Phone className="w-4 h-4" />
+              043 322 52 30
+            </a>
             <motion.button
-              onClick={() => document.getElementById('leistungen')?.scrollIntoView({ behavior: 'smooth' })}
-              className="flex items-center justify-center gap-2 px-6 py-3 rounded-2xl border border-primary/20 hover:bg-white text-base font-medium transition-all"
+              onClick={scrollToLeistungen}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl border border-primary/20 hover:bg-white text-base font-medium transition-all"
               whileHover={{ scale: 1.015 }}
             >
               Leistungen entdecken
             </motion.button>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-3 pt-8 text-sm">
-            {['Kauf & Verkauf', 'Verwaltung', 'Finanzierung', 'Auslandsimmobilien'].map((item) => (
-              <div key={item} className="flex items-center gap-2 text-text-muted">
-                <CheckCircle className="w-4 h-4 text-accent" />
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
+          </motion.div>
         </div>
 
-        {/* Right Visual */}
-        <div className="md:col-span-5 relative h-[520px] hidden md:block">
-          <div className="absolute inset-0 flex items-center justify-center">
-            {/* Floating Property Elements */}
-            <motion.div
-              className="absolute top-[10%] left-[5%] glass w-48 h-44 rounded-3xl p-6 shadow-2xl"
-              animate={{ y: [0, -25, 0], rotate: [-3, 2, -3] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <div className="text-primary/80 mb-3">
-                <Home className="w-9 h-9" />
-              </div>
-              <div className="font-semibold text-lg">Kauf & Verkauf</div>
-              <div className="text-sm text-text-muted mt-1">Schweiz • Toskana • Tessin</div>
-            </motion.div>
+        {/* Right Visual - Property Showcase */}
+        <div className="relative h-[560px] hidden lg:block">
+          {/* Main property card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[420px] rounded-[40px] bg-gradient-to-br from-primary via-primary to-primary/80 shadow-2xl shadow-primary/30 overflow-hidden"
+          >
+            {/* Roof detail */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[180px] border-r-[180px] border-b-[120px] border-l-transparent border-r-transparent border-b-[#162d4a]" />
 
-            <motion.div
-              className="absolute top-[36%] right-[10%] glass w-52 h-36 rounded-3xl p-6 shadow-2xl"
-              animate={{ y: [0, 18, 0], rotate: [2, -4, 2] }}
-              transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-            >
-              <div className="flex items-center gap-3">
-                <div className="text-accent">
-                  <MapPin className="w-8 h-8" />
-                </div>
-                <div>
-                  <div className="font-semibold">Regionale Expertise</div>
-                  <div className="text-xs text-text-muted">Persönlich vor Ort</div>
-                </div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-8 pt-24">
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Home className="w-24 h-24 text-accent/90 mb-6" />
+              </motion.div>
+              <div className="text-3xl font-serif-custom font-semibold tracking-tight text-center">Ihr Zuhause</div>
+              <div className="text-white/70 text-center mt-2 leading-relaxed">
+                Entdecken Sie passende Objekte in Ihrer Wunschregion
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              className="absolute bottom-[16%] left-[18%] glass w-56 h-36 rounded-3xl p-6 shadow-2xl"
-              animate={{ y: [0, -15, 0], rotate: [-1, 3, -1] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
-            >
-              <div className="text-primary mb-2 text-sm font-medium">Ihr Vorteil</div>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center gap-2">
-                  <KeyRound className="w-3.5 h-3.5 text-accent" /> Rund-um-Sorgen-Paket
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-3.5 h-3.5 text-primary" /> Massgeschneiderte Beratung
-                </div>
+            {/* Window details */}
+            <div className="absolute bottom-16 left-10 w-16 h-16 rounded-xl bg-white/10 border border-white/20" />
+            <div className="absolute bottom-16 right-10 w-16 h-16 rounded-xl bg-white/10 border border-white/20" />
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-20 h-24 rounded-t-xl bg-accent/40" />
+
+            {/* Decorative glow */}
+            <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[300px] h-[200px] bg-accent/20 rounded-full blur-[80px]" />
+          </motion.div>
+
+          {/* Floating region cards */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+            className="absolute top-[8%] right-[0%] glass rounded-3xl p-5 shadow-xl"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl bg-accent/20 flex items-center justify-center">
+                <Sun className="w-6 h-6 text-accent" />
               </div>
-            </motion.div>
+              <div>
+                <div className="font-semibold text-text-dark">Toskana</div>
+                <div className="text-xs text-text-muted">Italien</div>
+              </div>
+            </div>
+          </motion.div>
 
-            {/* Central glowing orb */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] bg-gradient-to-br from-primary/10 via-accent/10 to-transparent rounded-full blur-3xl" />
-          </div>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.8 }}
+            className="absolute top-[22%] left-[0%] glass rounded-3xl p-5 shadow-xl"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
+                <MapPin className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <div className="font-semibold text-text-dark">Schweiz</div>
+                <div className="text-xs text-text-muted">Zentralschweiz</div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1 }}
+            className="absolute bottom-[12%] left-[5%] glass rounded-3xl p-5 shadow-xl"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
+                <Mountain className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <div className="font-semibold text-text-dark">Tessin</div>
+                <div className="text-xs text-text-muted">Südliche Schweiz</div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.2 }}
+            className="absolute bottom-[8%] right-[5%] glass rounded-3xl p-5 shadow-xl"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center">
+                <ShieldCheck className="w-6 h-6 text-emerald-600" />
+              </div>
+              <div>
+                <div className="font-semibold text-text-dark">Rund-um-Sorgen</div>
+                <div className="text-xs text-text-muted">Von A bis Z</div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
 
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-xs tracking-[3px] text-text-muted">
+      {/* Trust bar at bottom */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.8 }}
+        className="max-w-7xl mx-auto px-6 w-full relative z-10 mt-12"
+      >
+        <div className="glass rounded-3xl p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+          {stats.map((stat, index) => (
+            <div key={index} className="text-center md:text-left">
+              <div className="text-xl md:text-2xl font-semibold text-primary tracking-tight">{stat.label}</div>
+              <div className="text-sm text-text-muted mt-1">{stat.sub}</div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-xs tracking-[3px] text-text-muted">
         SCROLL
         <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity }} className="text-lg">↓</motion.div>
       </div>
