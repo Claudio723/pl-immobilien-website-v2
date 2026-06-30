@@ -27,15 +27,21 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
         <Link href="/" className="flex items-center h-9">
           <img
-            src="/logo.svg"
+            src={scrolled ? "/logo.svg" : "/logo-white.svg"}
             alt="PL IMMOBILIEN"
-            className="h-9 w-auto object-contain"
+            className="h-9 w-auto object-contain transition-opacity duration-300"
           />
         </Link>
 
         <div className="hidden md:flex items-center gap-10">
           {navLinks.map(link => (
-            <Link key={link.href} href={link.href} className="text-sm font-medium text-text-dark/80 hover:text-primary transition-colors tracking-wide">
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`text-sm font-medium transition-colors tracking-wide ${
+                scrolled ? 'text-text-dark/80 hover:text-primary' : 'text-white/90 hover:text-white'
+              }`}
+            >
               {link.label}
             </Link>
           ))}
@@ -53,7 +59,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 -mr-2 text-text-dark"
+            className={`md:hidden p-2 -mr-2 transition-colors ${scrolled ? 'text-text-dark' : 'text-white'}`}
             aria-label={isOpen ? 'Menü schliessen' : 'Menü öffnen'}
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
