@@ -22,29 +22,24 @@ export default function Hero() {
   ];
 
   return (
-    <section className="min-h-[100dvh] flex flex-col justify-end relative overflow-hidden">
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/hero-bg.jpg')" }}
-      />
-      {/* Dark gradient overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-primary/30" />
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-transparent to-transparent" />
+    <section className="relative min-h-[100dvh] flex flex-col justify-end overflow-hidden bg-primary">
+      {/* Blank background placeholder - Bild hier ersetzen */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#162d4a] to-primary" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(201,178,122,0.12),transparent_50%)]" />
 
-      <div className="max-w-7xl mx-auto px-6 w-full relative z-10 pt-32 pb-12 md:pb-20">
-        <div className="grid lg:grid-cols-12 gap-12 items-end">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 pb-10 md:pb-16">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end">
           {/* Main headline */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="lg:col-span-8"
           >
-            <div className="text-accent text-sm font-semibold tracking-[3px] uppercase mb-6">
+            <div className="text-accent/90 text-xs md:text-sm font-semibold tracking-[0.2em] uppercase mb-5 md:mb-6">
               PL IMMOBILIEN
             </div>
-            <h1 className="text-[clamp(3rem,8vw,7rem)] leading-[0.95] tracking-tighter font-semibold text-balance text-white">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[1.0] tracking-tighter font-semibold text-balance text-white">
               Immobilien<br />
               mit <span className="text-accent">Leidenschaft</span><br />
               und Massgeschneidertheit.
@@ -53,28 +48,28 @@ export default function Hero() {
 
           {/* Right content block */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-4 pb-4"
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="lg:col-span-4 pb-1"
           >
-            <p className="text-lg text-white/80 leading-relaxed mb-8">
+            <p className="text-base md:text-lg text-white/75 leading-relaxed mb-6 md:mb-8 max-w-md">
               Kauf, Verkauf, Bewirtschaftung und Verwaltung – für die Schweiz, Toskana und Tessin. Persönlich und erfahren.
             </p>
-            <div className="flex flex-col sm:flex-row lg:flex-col gap-4">
+            <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3">
               <motion.button
                 onClick={scrollToKontakt}
-                className="cta-button group flex items-center justify-between gap-4 bg-accent hover:bg-accent/90 text-primary px-6 py-4 rounded-2xl font-semibold transition-all active:scale-[0.985]"
-                whileHover={{ scale: 1.01 }}
+                className="cta-button group flex items-center justify-center gap-3 bg-accent hover:bg-accent/90 text-primary px-6 py-3.5 rounded-full font-semibold text-sm transition-all active:scale-[0.985]"
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.985 }}
               >
                 <span>Beratung anfragen</span>
-                <ArrowDownRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform" />
+                <ArrowDownRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform" />
               </motion.button>
               <motion.button
                 onClick={scrollToLeistungen}
-                className="flex items-center justify-center px-6 py-4 rounded-2xl border border-white/30 hover:bg-white/10 text-white text-base font-medium transition-all"
-                whileHover={{ scale: 1.01 }}
+                className="flex items-center justify-center px-6 py-3.5 rounded-full border border-white/30 hover:bg-white/10 text-white text-sm font-medium transition-all"
+                whileHover={{ scale: 1.02 }}
               >
                 Leistungen entdecken
               </motion.button>
@@ -86,13 +81,13 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-16 md:mt-24 pt-8 border-t border-white/20 grid grid-cols-2 md:grid-cols-4 gap-6"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-12 md:mt-20 pt-6 md:pt-8 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4"
         >
           {regions.map(({ label, sub }) => (
             <div key={label}>
-              <div className="text-lg font-semibold text-white tracking-tight">{label}</div>
-              <div className="text-sm text-white/60 mt-1">{sub}</div>
+              <div className="text-base md:text-lg font-semibold text-white tracking-tight">{label}</div>
+              <div className="text-xs md:text-sm text-white/55 mt-0.5">{sub}</div>
             </div>
           ))}
         </motion.div>

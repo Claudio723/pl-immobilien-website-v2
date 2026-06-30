@@ -74,37 +74,37 @@ ${data.vorname} ${data.nachname}`
   };
 
   return (
-    <section id="kontakt" className="bg-warm-bg py-24 md:py-36">
+    <section id="kontakt" className="bg-warm-bg py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
           {/* Left info */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="lg:col-span-5"
           >
-            <div className="text-accent text-sm font-semibold tracking-[3px] uppercase mb-4">Kontakt</div>
-            <h2 className="text-5xl md:text-6xl tracking-tighter leading-none mb-8">
+            <div className="text-accent text-xs md:text-sm font-semibold tracking-[0.2em] uppercase mb-4">Kontakt</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tighter leading-[1.05] mb-6">
               Lassen Sie uns sprechen.
             </h2>
-            <p className="text-lg text-text-muted leading-relaxed mb-12">
+            <p className="text-text-muted leading-relaxed mb-10">
               Rufen Sie uns an oder schreiben Sie uns – wir freuen uns darauf, Sie kennenzulernen und Ihr Anliegen zu besprechen.
             </p>
 
-            <div className="space-y-6">
+            <div className="space-y-5">
               {contactDetails.map((detail) => (
                 <div key={detail.label} className="group">
-                  <div className="text-xs text-text-muted uppercase tracking-wider mb-1">{detail.label}</div>
+                  <div className="text-[10px] md:text-xs text-text-muted uppercase tracking-wider mb-1">{detail.label}</div>
                   {detail.href ? (
                     <a
                       href={detail.href}
-                      className="text-xl font-semibold text-text-dark hover:text-primary transition-colors"
+                      className="text-lg md:text-xl font-semibold text-text-dark hover:text-primary transition-colors"
                     >
                       {detail.value}
                     </a>
                   ) : (
-                    <div className="text-xl font-semibold text-text-dark">{detail.value}</div>
+                    <div className="text-lg md:text-xl font-semibold text-text-dark">{detail.value}</div>
                   )}
                 </div>
               ))}
@@ -113,70 +113,70 @@ ${data.vorname} ${data.nachname}`
 
           {/* Right form */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.15 }}
+            transition={{ delay: 0.1 }}
             className="lg:col-span-7"
           >
-            <div className="bg-white rounded-[32px] p-8 md:p-12 shadow-xl shadow-primary/5 relative overflow-hidden">
+            <div className="bg-white rounded-[28px] p-6 md:p-10 shadow-xl shadow-primary/5 relative overflow-hidden">
               <AnimatePresence mode="wait">
                 {!isSuccess ? (
                   <motion.form
                     key="form"
                     initial={{ opacity: 1 }}
-                    exit={{ opacity: 0, y: 20 }}
+                    exit={{ opacity: 0, y: 16 }}
                     onSubmit={handleSubmit(onSubmit)}
-                    className="space-y-6"
+                    className="space-y-5"
                   >
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid md:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-medium mb-2 text-text-muted">Vorname</label>
+                        <label className="block text-sm font-medium mb-1.5 text-text-muted">Vorname</label>
                         <input
                           {...register('vorname')}
-                          className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50"
+                          className="form-input w-full px-4 py-3 rounded-xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50"
                           placeholder="Max"
                         />
                         {errors.vorname && <p className="text-red-500 text-sm mt-1.5">{errors.vorname.message}</p>}
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2 text-text-muted">Nachname</label>
+                        <label className="block text-sm font-medium mb-1.5 text-text-muted">Nachname</label>
                         <input
                           {...register('nachname')}
-                          className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50"
+                          className="form-input w-full px-4 py-3 rounded-xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50"
                           placeholder="Muster"
                         />
                         {errors.nachname && <p className="text-red-500 text-sm mt-1.5">{errors.nachname.message}</p>}
                       </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid md:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-medium mb-2 text-text-muted">E-Mail</label>
+                        <label className="block text-sm font-medium mb-1.5 text-text-muted">E-Mail</label>
                         <input
                           type="email"
                           {...register('email')}
-                          className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50"
+                          className="form-input w-full px-4 py-3 rounded-xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50"
                           placeholder="max@muster.ch"
                         />
                         {errors.email && <p className="text-red-500 text-sm mt-1.5">{errors.email.message}</p>}
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2 text-text-muted">Telefon (optional)</label>
+                        <label className="block text-sm font-medium mb-1.5 text-text-muted">Telefon (optional)</label>
                         <input
                           type="tel"
                           {...register('telefon')}
-                          className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50"
+                          className="form-input w-full px-4 py-3 rounded-xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50"
                           placeholder="+41 79 123 45 67"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-text-muted">Anliegen</label>
+                      <label className="block text-sm font-medium mb-1.5 text-text-muted">Anliegen</label>
                       <select
                         {...register('anliegen')}
-                        className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/15 bg-warm-bg text-text-dark"
+                        className="form-input w-full px-4 py-3 rounded-xl border border-primary/15 bg-warm-bg text-text-dark"
                       >
                         <option value="">Bitte wählen</option>
                         {anliegenOptions.map(option => (
@@ -187,11 +187,11 @@ ${data.vorname} ${data.nachname}`
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-text-muted">Nachricht</label>
+                      <label className="block text-sm font-medium mb-1.5 text-text-muted">Nachricht</label>
                       <textarea
                         {...register('nachricht')}
-                        rows={5}
-                        className="form-input w-full px-5 py-4 rounded-3xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50 resize-y min-h-[140px]"
+                        rows={4}
+                        className="form-input w-full px-4 py-3 rounded-2xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50 resize-y min-h-[120px]"
                         placeholder="Hallo, ich interessiere mich für..."
                       />
                       {errors.nachricht && <p className="text-red-500 text-sm mt-1.5">{errors.nachricht.message}</p>}
@@ -200,18 +200,18 @@ ${data.vorname} ${data.nachname}`
                     <motion.button
                       type="submit"
                       disabled={isSubmitting}
-                      className="cta-button group w-full py-4 text-lg font-semibold bg-primary hover:bg-primary/95 disabled:bg-primary/70 text-white rounded-3xl flex items-center justify-center gap-3 mt-4 active:scale-[0.985] transition-all"
+                      className="cta-button group w-full py-3.5 text-base font-semibold bg-primary hover:bg-primary/95 disabled:bg-primary/70 text-white rounded-full flex items-center justify-center gap-2 mt-2 active:scale-[0.985] transition-all"
                       whileHover={{ scale: isSubmitting ? 1 : 1.005 }}
                       whileTap={{ scale: 0.985 }}
                     >
                       {isSubmitting ? (
                         <><Loader2 className="w-5 h-5 animate-spin" /> Wird gesendet...</>
                       ) : (
-                        <><span>Unverbindliche Beratung anfragen</span><ArrowDownRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform" /></>
+                        <><span>Unverbindliche Beratung anfragen</span><ArrowDownRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform" /></>
                       )}
                     </motion.button>
 
-                    <p className="text-center text-xs text-text-muted pt-2">
+                    <p className="text-center text-xs text-text-muted pt-1">
                       Klicken Sie auf „Senden“ – Ihr Standard-Mail-Programm öffnet sich automatisch.
                     </p>
                   </motion.form>
@@ -220,13 +220,13 @@ ${data.vorname} ${data.nachname}`
                     key="success"
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="py-16 text-center"
+                    className="py-14 text-center"
                   >
-                    <div className="mx-auto w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mb-8">
-                      <CheckCircle className="w-10 h-10 text-emerald-600" />
+                    <div className="mx-auto w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mb-6">
+                      <CheckCircle className="w-8 h-8 text-emerald-600" />
                     </div>
-                    <h3 className="text-4xl font-semibold tracking-tight mb-4">Vielen Dank!</h3>
-                    <p className="text-xl text-text-muted max-w-sm mx-auto">
+                    <h3 className="text-3xl font-semibold tracking-tight mb-3">Vielen Dank!</h3>
+                    <p className="text-lg text-text-muted max-w-sm mx-auto">
                       Ihr Mail-Programm sollte sich jetzt geöffnet haben. Wir melden uns schnellstmöglich bei Ihnen.
                     </p>
                   </motion.div>
