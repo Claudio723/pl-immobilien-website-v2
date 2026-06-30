@@ -96,3 +96,29 @@ h1, h2, h3, h4, h5 {
   background: linear-gradient(to right, var(--accent), transparent);
   border-radius: 9999px;
 }
+
+/* Premium utilities */
+.text-balance {
+  text-wrap: balance;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.divide-line {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(30, 58, 95, 0.15), transparent);
+}
+
+.divide-line-light {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+}

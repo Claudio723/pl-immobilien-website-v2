@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Loader2, CheckCircle, Phone, Mail, MapPin } from 'lucide-react';
+import { Loader2, CheckCircle, ArrowDownRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const formSchema = z.object({
@@ -25,6 +25,13 @@ const anliegenOptions = [
   "Finanzierung",
   "Immobilien im Ausland",
   "Sonstiges"
+];
+
+const contactDetails = [
+  { label: "Telefon", value: "+41 43 322 52 30", href: "tel:+41433225230" },
+  { label: "Mobil", value: "+41 76 393 87 97", href: "tel:+41763938797" },
+  { label: "E-Mail", value: "info@pl-immobilien.ch", href: "mailto:info@pl-immobilien.ch" },
+  { label: "Adresse", value: "Binzstrasse 3, 8953 Dietikon", href: null },
 ];
 
 export default function Contact() {
@@ -67,178 +74,166 @@ ${data.vorname} ${data.nachname}`
   };
 
   return (
-    <section id="kontakt" className="max-w-6xl mx-auto px-6 py-24 md:py-32 border-t border-primary/10">
-      <div className="grid lg:grid-cols-5 gap-16">
-        {/* Left: Contact Info */}
-        <div className="lg:col-span-2">
-          <div className="text-accent text-sm font-semibold tracking-[2px] mb-3">KONTAKT</div>
-          <h2 className="section-heading text-5xl md:text-6xl tracking-tighter mb-6">Lassen Sie uns sprechen.</h2>
-          <p className="text-xl text-text-muted leading-relaxed mb-10">
-            Rufen Sie uns an oder schreiben Sie uns – wir freuen uns darauf, Sie kennenzulernen und Ihr Anliegen zu besprechen.
-          </p>
+    <section id="kontakt" className="bg-warm-bg py-24 md:py-36">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
+          {/* Left info */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-5"
+          >
+            <div className="text-accent text-sm font-semibold tracking-[3px] uppercase mb-4">Kontakt</div>
+            <h2 className="text-5xl md:text-6xl tracking-tighter leading-none mb-8">
+              Lassen Sie uns sprechen.
+            </h2>
+            <p className="text-lg text-text-muted leading-relaxed mb-12">
+              Rufen Sie uns an oder schreiben Sie uns – wir freuen uns darauf, Sie kennenzulernen und Ihr Anliegen zu besprechen.
+            </p>
 
-          <div className="space-y-6">
-            <a href="tel:+41433225230" className="flex items-center gap-4 group">
-              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <Phone className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <div className="text-sm text-text-muted">Telefon</div>
-                <div className="font-semibold text-text-dark">+41 43 322 52 30</div>
-              </div>
-            </a>
-
-            <a href="tel:+41763938797" className="flex items-center gap-4 group">
-              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <Phone className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <div className="text-sm text-text-muted">Mobil</div>
-                <div className="font-semibold text-text-dark">+41 76 393 87 97</div>
-              </div>
-            </a>
-
-            <a href="mailto:info@pl-immobilien.ch" className="flex items-center gap-4 group">
-              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <Mail className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <div className="text-sm text-text-muted">E-Mail</div>
-                <div className="font-semibold text-text-dark">info@pl-immobilien.ch</div>
-              </div>
-            </a>
-
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
-                <MapPin className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <div className="text-sm text-text-muted">Adresse</div>
-                <div className="font-semibold text-text-dark">Binzstrasse 3, 8953 Dietikon</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Right: Form */}
-        <div className="lg:col-span-3">
-          <div className="glass rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden">
-            <AnimatePresence mode="wait">
-              {!isSuccess ? (
-                <motion.form
-                  key="form"
-                  initial={{ opacity: 1 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  onSubmit={handleSubmit(onSubmit)}
-                  className="space-y-6"
-                >
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium mb-2 text-text-muted">Vorname</label>
-                      <input
-                        {...register('vorname')}
-                        className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/20 bg-white text-lg placeholder:text-text-muted/60"
-                        placeholder="Max"
-                      />
-                      {errors.vorname && <p className="text-red-500 text-sm mt-1.5">{errors.vorname.message}</p>}
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-2 text-text-muted">Nachname</label>
-                      <input
-                        {...register('nachname')}
-                        className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/20 bg-white text-lg placeholder:text-text-muted/60"
-                        placeholder="Muster"
-                      />
-                      {errors.nachname && <p className="text-red-500 text-sm mt-1.5">{errors.nachname.message}</p>}
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium mb-2 text-text-muted">E-Mail-Adresse</label>
-                      <input
-                        type="email"
-                        {...register('email')}
-                        className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/20 bg-white text-lg placeholder:text-text-muted/60"
-                        placeholder="max@muster.ch"
-                      />
-                      {errors.email && <p className="text-red-500 text-sm mt-1.5">{errors.email.message}</p>}
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-2 text-text-muted">Telefon (optional)</label>
-                      <input
-                        type="tel"
-                        {...register('telefon')}
-                        className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/20 bg-white text-lg placeholder:text-text-muted/60"
-                        placeholder="+41 79 123 45 67"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-text-muted">Anliegen</label>
-                    <select
-                      {...register('anliegen')}
-                      className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/20 bg-white text-lg text-text-dark"
+            <div className="space-y-6">
+              {contactDetails.map((detail) => (
+                <div key={detail.label} className="group">
+                  <div className="text-xs text-text-muted uppercase tracking-wider mb-1">{detail.label}</div>
+                  {detail.href ? (
+                    <a
+                      href={detail.href}
+                      className="text-xl font-semibold text-text-dark hover:text-primary transition-colors"
                     >
-                      <option value="">Bitte wählen</option>
-                      {anliegenOptions.map(option => (
-                        <option key={option} value={option}>{option}</option>
-                      ))}
-                    </select>
-                    {errors.anliegen && <p className="text-red-500 text-sm mt-1.5">{errors.anliegen.message}</p>}
-                  </div>
+                      {detail.value}
+                    </a>
+                  ) : (
+                    <div className="text-xl font-semibold text-text-dark">{detail.value}</div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
 
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-text-muted">Ihre Nachricht</label>
-                    <textarea
-                      {...register('nachricht')}
-                      rows={5}
-                      className="form-input w-full px-5 py-4 rounded-3xl border border-primary/20 bg-white text-lg placeholder:text-text-muted/60 resize-y min-h-[140px]"
-                      placeholder="Hallo, ich interessiere mich für..."
-                    />
-                    {errors.nachricht && <p className="text-red-500 text-sm mt-1.5">{errors.nachricht.message}</p>}
-                  </div>
-
-                  <motion.button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="cta-button w-full py-4 text-lg font-semibold bg-primary hover:bg-primary/95 disabled:bg-primary/70 text-white rounded-3xl flex items-center justify-center gap-3 mt-4 shadow-xl shadow-primary/40 active:scale-[0.985] transition-all"
-                    whileHover={{ scale: isSubmitting ? 1 : 1.005 }}
-                    whileTap={{ scale: 0.985 }}
+          {/* Right form */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 }}
+            className="lg:col-span-7"
+          >
+            <div className="bg-white rounded-[32px] p-8 md:p-12 shadow-xl shadow-primary/5 relative overflow-hidden">
+              <AnimatePresence mode="wait">
+                {!isSuccess ? (
+                  <motion.form
+                    key="form"
+                    initial={{ opacity: 1 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="space-y-6"
                   >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="w-5 h-5 animate-spin" /> Wird gesendet...
-                      </>
-                    ) : (
-                      "Unverbindliche Beratung anfragen"
-                    )}
-                  </motion.button>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-text-muted">Vorname</label>
+                        <input
+                          {...register('vorname')}
+                          className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50"
+                          placeholder="Max"
+                        />
+                        {errors.vorname && <p className="text-red-500 text-sm mt-1.5">{errors.vorname.message}</p>}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-text-muted">Nachname</label>
+                        <input
+                          {...register('nachname')}
+                          className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50"
+                          placeholder="Muster"
+                        />
+                        {errors.nachname && <p className="text-red-500 text-sm mt-1.5">{errors.nachname.message}</p>}
+                      </div>
+                    </div>
 
-                  <p className="text-center text-xs text-text-muted pt-3">
-                    Klicken Sie auf „Senden“ – Ihr Standard-Mail-Programm öffnet sich automatisch mit den ausgefüllten Daten.
-                  </p>
-                </motion.form>
-              ) : (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="py-16 text-center"
-                >
-                  <div className="mx-auto w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mb-8">
-                    <CheckCircle className="w-12 h-12 text-emerald-600" />
-                  </div>
-                  <h3 className="text-4xl font-semibold tracking-tight mb-4">Vielen Dank!</h3>
-                  <p className="text-xl text-text-muted max-w-sm mx-auto">
-                    Ihr Mail-Programm sollte sich jetzt geöffnet haben. Wir melden uns schnellstmöglich bei Ihnen.
-                  </p>
-                  <div className="mt-8 text-sm text-emerald-600 font-medium">PL IMMOBILIEN • Dietikon</div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-text-muted">E-Mail</label>
+                        <input
+                          type="email"
+                          {...register('email')}
+                          className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50"
+                          placeholder="max@muster.ch"
+                        />
+                        {errors.email && <p className="text-red-500 text-sm mt-1.5">{errors.email.message}</p>}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-text-muted">Telefon (optional)</label>
+                        <input
+                          type="tel"
+                          {...register('telefon')}
+                          className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50"
+                          placeholder="+41 79 123 45 67"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-text-muted">Anliegen</label>
+                      <select
+                        {...register('anliegen')}
+                        className="form-input w-full px-5 py-3.5 rounded-2xl border border-primary/15 bg-warm-bg text-text-dark"
+                      >
+                        <option value="">Bitte wählen</option>
+                        {anliegenOptions.map(option => (
+                          <option key={option} value={option}>{option}</option>
+                        ))}
+                      </select>
+                      {errors.anliegen && <p className="text-red-500 text-sm mt-1.5">{errors.anliegen.message}</p>}
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-text-muted">Nachricht</label>
+                      <textarea
+                        {...register('nachricht')}
+                        rows={5}
+                        className="form-input w-full px-5 py-4 rounded-3xl border border-primary/15 bg-warm-bg text-text-dark placeholder:text-text-muted/50 resize-y min-h-[140px]"
+                        placeholder="Hallo, ich interessiere mich für..."
+                      />
+                      {errors.nachricht && <p className="text-red-500 text-sm mt-1.5">{errors.nachricht.message}</p>}
+                    </div>
+
+                    <motion.button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="cta-button group w-full py-4 text-lg font-semibold bg-primary hover:bg-primary/95 disabled:bg-primary/70 text-white rounded-3xl flex items-center justify-center gap-3 mt-4 active:scale-[0.985] transition-all"
+                      whileHover={{ scale: isSubmitting ? 1 : 1.005 }}
+                      whileTap={{ scale: 0.985 }}
+                    >
+                      {isSubmitting ? (
+                        <><Loader2 className="w-5 h-5 animate-spin" /> Wird gesendet...</>
+                      ) : (
+                        <><span>Unverbindliche Beratung anfragen</span><ArrowDownRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform" /></>
+                      )}
+                    </motion.button>
+
+                    <p className="text-center text-xs text-text-muted pt-2">
+                      Klicken Sie auf „Senden“ – Ihr Standard-Mail-Programm öffnet sich automatisch.
+                    </p>
+                  </motion.form>
+                ) : (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="py-16 text-center"
+                  >
+                    <div className="mx-auto w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mb-8">
+                      <CheckCircle className="w-10 h-10 text-emerald-600" />
+                    </div>
+                    <h3 className="text-4xl font-semibold tracking-tight mb-4">Vielen Dank!</h3>
+                    <p className="text-xl text-text-muted max-w-sm mx-auto">
+                      Ihr Mail-Programm sollte sich jetzt geöffnet haben. Wir melden uns schnellstmöglich bei Ihnen.
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
