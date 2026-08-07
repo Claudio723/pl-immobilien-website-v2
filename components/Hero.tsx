@@ -23,9 +23,11 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[100dvh] flex flex-col justify-end overflow-hidden bg-primary">
-      {/* Blank background placeholder - Bild hier ersetzen */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#162d4a] to-primary" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(201,178,122,0.12),transparent_50%)]" />
+      {/* Background with subtle accent glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#1e2436] to-primary" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(182,164,142,0.14),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(182,164,142,0.08),transparent_50%)]" />
+      <div className="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiNmZmYiLz48L3N2Zz4=')]" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 pb-10 md:pb-16">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end">
@@ -42,7 +44,7 @@ export default function Hero() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[1.0] tracking-tighter font-semibold text-balance text-white">
               Immobilien<br />
               mit <span className="text-accent">Leidenschaft</span><br />
-              und Massgeschneidertheit.
+              und Massgeschneiderten Lösungen.
             </h1>
           </motion.div>
 
@@ -57,22 +59,19 @@ export default function Hero() {
               Kauf, Verkauf, Bewirtschaftung und Verwaltung – für die Schweiz, Toskana und Tessin. Persönlich und erfahren.
             </p>
             <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3">
-              <motion.button
+              <button
                 onClick={scrollToKontakt}
-                className="cta-button group flex items-center justify-center gap-3 bg-accent hover:bg-accent/90 text-primary px-6 py-3.5 rounded-full font-semibold text-sm transition-all active:scale-[0.985]"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.985 }}
+                className="cta-button group flex items-center justify-center gap-3 bg-accent text-primary px-6 py-3.5 rounded-full font-semibold text-sm"
               >
                 <span>Beratung anfragen</span>
                 <ArrowDownRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform" />
-              </motion.button>
-              <motion.button
+              </button>
+              <button
                 onClick={scrollToLeistungen}
-                className="flex items-center justify-center px-6 py-3.5 rounded-full border border-white/30 hover:bg-white/10 text-white text-sm font-medium transition-all"
-                whileHover={{ scale: 1.02 }}
+                className="flex items-center justify-center px-6 py-3.5 rounded-full border border-white/30 hover:bg-white/10 hover:border-white/50 text-white text-sm font-medium transition-all active:scale-[0.985]"
               >
                 Leistungen entdecken
-              </motion.button>
+              </button>
             </div>
           </motion.div>
         </div>

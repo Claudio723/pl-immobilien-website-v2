@@ -30,7 +30,7 @@ export default function CookieBanner() {
         </p>
         <button
           onClick={accept}
-          className="px-8 py-2.5 bg-primary hover:bg-primary/95 text-white text-sm font-semibold rounded-2xl whitespace-nowrap transition-all active:scale-[0.985] shadow-lg shadow-primary/20"
+          className="cta-button px-8 py-2.5 bg-primary text-white text-sm font-semibold rounded-2xl whitespace-nowrap shadow-lg shadow-primary/20"
         >
           Verstanden
         </button>

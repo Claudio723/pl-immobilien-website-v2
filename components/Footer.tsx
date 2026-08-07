@@ -11,7 +11,7 @@ export default function Footer() {
             <img
               src="/logo-white.svg"
               alt="PL IMMOBILIEN"
-              className="h-9 w-auto object-contain mb-5"
+              className="h-10 md:h-11 w-auto object-contain mb-5"
             />
             <p className="max-w-md text-white/55 leading-relaxed">
               Kauf, Verkauf, Bewirtschaftung und Verwaltung – persönlich, erfahren und mit Leidenschaft für Immobilien.

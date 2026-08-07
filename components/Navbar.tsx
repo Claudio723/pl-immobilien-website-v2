@@ -24,12 +24,12 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'glass shadow-sm' : 'bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-        <Link href="/" className="flex items-center h-9">
+      <div className="max-w-7xl mx-auto px-6 h-[72px] md:h-[88px] flex items-center justify-between">
+        <Link href="/" className="flex items-center h-11 md:h-12">
           <img
             src={scrolled ? "/logo.svg" : "/logo-white.svg"}
             alt="PL IMMOBILIEN"
-            className="h-9 w-auto object-contain transition-opacity duration-300"
+            className="h-11 md:h-12 w-auto object-contain transition-opacity duration-300"
           />
         </Link>
 
@@ -38,24 +38,23 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors tracking-wide ${
+              className={`relative text-sm font-medium transition-colors tracking-wide group ${
                 scrolled ? 'text-text-dark/80 hover:text-primary' : 'text-white/90 hover:text-white'
               }`}
             >
               {link.label}
+              <span className={`absolute -bottom-1 left-0 h-px w-0 group-hover:w-full transition-all duration-300 ${scrolled ? 'bg-primary' : 'bg-white'}`} />
             </Link>
           ))}
         </div>
 
         <div className="flex items-center gap-4">
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.985 }}>
-            <Link
-              href="/#kontakt"
-              className="cta-button px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-full hover:bg-primary/90 transition-all active:scale-[0.985] whitespace-nowrap"
-            >
-              Beratung
-            </Link>
-          </motion.div>
+          <Link
+            href="/#kontakt"
+            className="hidden sm:inline-flex px-5 py-2.5 bg-accent text-primary text-sm font-semibold rounded-full hover:brightness-105 hover:shadow-lg hover:shadow-accent/20 active:scale-[0.985] transition-all whitespace-nowrap"
+          >
+            Beratung
+          </Link>
 
           <button
             onClick={() => setIsOpen(!isOpen)}

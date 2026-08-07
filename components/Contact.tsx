@@ -197,19 +197,17 @@ ${data.vorname} ${data.nachname}`
                       {errors.nachricht && <p className="text-red-500 text-sm mt-1.5">{errors.nachricht.message}</p>}
                     </div>
 
-                    <motion.button
+                    <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="cta-button group w-full py-3.5 text-base font-semibold bg-primary hover:bg-primary/95 disabled:bg-primary/70 text-white rounded-full flex items-center justify-center gap-2 mt-2 active:scale-[0.985] transition-all"
-                      whileHover={{ scale: isSubmitting ? 1 : 1.005 }}
-                      whileTap={{ scale: 0.985 }}
+                      className="cta-button group w-full py-3.5 text-base font-semibold bg-primary disabled:bg-primary/70 text-white rounded-full flex items-center justify-center gap-2 mt-2"
                     >
                       {isSubmitting ? (
                         <><Loader2 className="w-5 h-5 animate-spin" /> Wird gesendet...</>
                       ) : (
                         <><span>Unverbindliche Beratung anfragen</span><ArrowDownRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform" /></>
                       )}
-                    </motion.button>
+                    </button>
 
                     <p className="text-center text-xs text-text-muted pt-1">
                       Klicken Sie auf „Senden“ – Ihr Standard-Mail-Programm öffnet sich automatisch.
